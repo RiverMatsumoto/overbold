@@ -29,7 +29,6 @@ scale = Vector2(3.5, 3.5)
 
 [node name="Bullets" type="Node2D" parent="Sprites"]
 position = Vector2(3.48772e-05, 1.74386e-05)
-scale = Vector2(1, 1)
 
 [node name="Player" parent="Sprites" node_paths=PackedStringArray("bulletList_") instance=ExtResource("4_a44ms")]
 position = Vector2(258, 174.857)
