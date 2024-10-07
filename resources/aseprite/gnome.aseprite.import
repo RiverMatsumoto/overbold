@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dfymh1vt8gjoq"
+path="res://.godot/imported/gnome.aseprite-dda580ab78223cb64d00a6aec6afbcd1.res"
+
+[deps]
+
+source_file="res://resources/aseprite/gnome.aseprite"
+dest_files=["res://.godot/imported/gnome.aseprite-dda580ab78223cb64d00a6aec6afbcd1.res"]
+
+[params]
+

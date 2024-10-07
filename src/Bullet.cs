@@ -15,7 +15,6 @@ public partial class Bullet : Node2D
 
     public void HitSomething(Node2D body)
     {
-        GD.Print("Hit something");
         if (body.GetType() != typeof(Player))
             QueueFree();
     }

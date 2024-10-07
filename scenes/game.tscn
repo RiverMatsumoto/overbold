@@ -1,8 +1,15 @@
-[gd_scene load_steps=8 format=4 uid="uid://deknjltr0d2dn"]
+[gd_scene load_steps=13 format=4 uid="uid://deknjltr0d2dn"]
 
 [ext_resource type="TileSet" uid="uid://dle6cxhqhj0ap" path="res://resources/tileset.tres" id="1_5j1xl"]
+[ext_resource type="Script" path="res://src/enemies/EnemyManager.cs" id="1_mprwp"]
 [ext_resource type="Script" path="res://src/TileMapLayer.cs" id="2_5ji8j"]
 [ext_resource type="PackedScene" uid="uid://b81bmxi0fvh50" path="res://scenes/Player.tscn" id="4_a44ms"]
+[ext_resource type="Script" path="res://src/enemies/Enemy.cs" id="4_ldmpv"]
+[ext_resource type="PackedScene" uid="uid://m7wyqangacpc" path="res://scenes/gooblin.tscn" id="5_u1vp1"]
+[ext_resource type="Texture2D" uid="uid://c65umobyik8k6" path="res://resources/gnome.png" id="6_lxcj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_728e2"]
+size = Vector2(10, 22.8572)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qejq"]
 size = Vector2(81, 885.5)
@@ -27,16 +34,78 @@ script = ExtResource("2_5ji8j")
 [node name="Sprites" type="Node2D" parent="."]
 scale = Vector2(3.5, 3.5)
 
+[node name="EnemyManager" type="Node" parent="Sprites" node_paths=PackedStringArray("timer_", "player_", "sprites_", "spawnPoints")]
+script = ExtResource("1_mprwp")
+timer_ = NodePath("Timer")
+globalEnemyPool_ = Array[PackedScene]([ExtResource("5_u1vp1")])
+player_ = NodePath("../Player")
+sprites_ = NodePath("..")
+spawnPoints = [NodePath("../SpawnPoints/TopLeft"), NodePath("../SpawnPoints/TopRight"), NodePath("../SpawnPoints/BotLeft"), NodePath("../SpawnPoints/BotRight")]
+
+[node name="Timer" type="Timer" parent="Sprites/EnemyManager"]
+
 [node name="Bullets" type="Node2D" parent="Sprites"]
 position = Vector2(3.48772e-05, 1.74386e-05)
 
 [node name="Player" parent="Sprites" node_paths=PackedStringArray("bulletList_") instance=ExtResource("4_a44ms")]
 position = Vector2(258, 174.857)
-collision_layer = 3
+collision_layer = 2
+collision_mask = 1
 speed_ = 12000.0
 bulletList_ = NodePath("../Bullets")
 
+[node name="Enemy2" type="CharacterBody2D" parent="Sprites"]
+process_mode = 4
+visible = false
+position = Vector2(160.571, 149.429)
+script = ExtResource("4_ldmpv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Enemy2"]
+position = Vector2(-0.428574, 1.14288)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_728e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites/Enemy2"]
+texture_filter = 1
+texture = ExtResource("6_lxcj7")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://resources/aseprite/gnome.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": false,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "ea80a8450cd4a37c602d56386c814c4d"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites/Enemy2"]
+root_node = NodePath("../../Enemy2")
+
+[node name="SpawnPoints" type="Node2D" parent="Sprites"]
+
+[node name="TopLeft" type="Node2D" parent="Sprites/SpawnPoints"]
+position = Vector2(75.7143, 70)
+
+[node name="TopRight" type="Node2D" parent="Sprites/SpawnPoints"]
+position = Vector2(469.143, 70.5714)
+
+[node name="BotLeft" type="Node2D" parent="Sprites/SpawnPoints"]
+position = Vector2(80, 240.857)
+
+[node name="BotRight" type="Node2D" parent="Sprites/SpawnPoints"]
+position = Vector2(468, 245.714)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(162.5, 555.5)

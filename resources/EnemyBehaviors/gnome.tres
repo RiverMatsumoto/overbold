@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Gnome" load_steps=2 format=3 uid="uid://2qjfrfsp66kq"]
+
+[ext_resource type="Script" path="res://src/enemies/Gnome.cs" id="1_n560e"]
+
+[resource]
+script = ExtResource("1_n560e")

@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://m7wyqangacpc"]
+
+[ext_resource type="Script" path="res://src/enemies/Enemy.cs" id="1_dn3mq"]
+[ext_resource type="Resource" uid="uid://bsd1gk7oli6xy" path="res://resources/EnemyBehaviors/gooblin.tres" id="2_yq1fx"]
+[ext_resource type="Texture2D" uid="uid://didmvsjnny174" path="res://resources/gooblin.png" id="3_ct2xj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_728e2"]
+size = Vector2(10, 22.8572)
+
+[node name="Gooblin" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer_")]
+position = Vector2(134.571, 188.857)
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_dn3mq")
+enemyBehavior_ = ExtResource("2_yq1fx")
+animationPlayer_ = NodePath("AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.142868, 0.428574)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_728e2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-0.285736, 0.857147)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_728e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_ct2xj")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://resources/aseprite/gooblin.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": false,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a6b397d5aa8d6a603236b33e36a3e053"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

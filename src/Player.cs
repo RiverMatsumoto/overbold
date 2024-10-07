@@ -4,21 +4,21 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
     [Export] public float speed_ { get; set; } = 100;
-    [Export] AnimationPlayer animationPlayer_;
-    [Export] PackedScene bullet_;
-    [Export] Node2D bulletList_;
-    [Export] Node2D shootLeftSpawn_;
-    [Export] Node2D shootRightSpawn_;
-    [Export] Node2D shootUpSpawn_;
-    [Export] Node2D shootDownSpawn_;
-    [Export] Node2D shootUpLeftSpawn_;
-    [Export] Node2D shootUpRightSpawn_;
-    [Export] Node2D shootDownLeftSpawn_;
-    [Export] Node2D shootDownRightSpawn_;
-    [Export] Sprite2D faceLeftSprite_;
-    [Export] Sprite2D faceRightSprite_;
-    [Export] Sprite2D faceUpSprite_;
-    [Export] Sprite2D faceDownSprite_;
+    [Export] protected AnimationPlayer animationPlayer_;
+    [Export] protected PackedScene bullet_;
+    [Export] protected Node2D bulletList_;
+    [Export] protected Node2D shootLeftSpawn_;
+    [Export] protected Node2D shootRightSpawn_;
+    [Export] protected Node2D shootUpSpawn_;
+    [Export] protected Node2D shootDownSpawn_;
+    [Export] protected Node2D shootUpLeftSpawn_;
+    [Export] protected Node2D shootUpRightSpawn_;
+    [Export] protected Node2D shootDownLeftSpawn_;
+    [Export] protected Node2D shootDownRightSpawn_;
+    [Export] protected Sprite2D faceLeftSprite_;
+    [Export] protected Sprite2D faceRightSprite_;
+    [Export] protected Sprite2D faceUpSprite_;
+    [Export] protected Sprite2D faceDownSprite_;
     [Export] Timer timer_;
     Node2D bulletSpawn_
     {
@@ -56,8 +56,10 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        animationPlayer_.Play("default");
-        timer_.Timeout += OnTimerCooldown;
+        if (animationPlayer_ != null)
+            animationPlayer_.Play("default");
+        if (timer_ != null)
+            timer_.Timeout += OnTimerCooldown;
     }
 
     private void OnTimerCooldown()
@@ -104,6 +106,14 @@ public partial class Player : CharacterBody2D
         moveDirection_ = moveDirection_.Normalized();
         if (!aPressed && moveDirection_ != Vector2.Zero)
             facingDirection_ = moveDirection_;
+        if (moveDirection_ == Vector2.Zero)
+        {
+            animationPlayer_.Pause();
+        }
+        else
+        {
+            animationPlayer_.Play("default");
+        }
 
         if (aPressed && canShoot_)
         {

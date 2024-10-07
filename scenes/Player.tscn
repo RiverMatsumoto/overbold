@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://src/Player.cs" id="2_mkymj"]
 [ext_resource type="PackedScene" uid="uid://du4j10n3xqatc" path="res://scenes/Bullet.tscn" id="3_cg2n5"]
-[ext_resource type="Texture2D" uid="uid://l8pnwgqsywvb" path="res://scenes/Left.png" id="3_shve1"]
-[ext_resource type="Texture2D" uid="uid://v5sb8wd754xy" path="res://scenes/Right.png" id="4_ng3rt"]
-[ext_resource type="Texture2D" uid="uid://cp8pdylsf6gh4" path="res://scenes/Up.png" id="5_qwm53"]
-[ext_resource type="Texture2D" uid="uid://dpwv5y4rgqwrn" path="res://scenes/Down.png" id="6_gt5gj"]
+[ext_resource type="Texture2D" uid="uid://l8pnwgqsywvb" path="res://resources/Left.png" id="3_shve1"]
+[ext_resource type="Texture2D" uid="uid://v5sb8wd754xy" path="res://resources/Right.png" id="4_ng3rt"]
+[ext_resource type="Texture2D" uid="uid://cp8pdylsf6gh4" path="res://resources/Up.png" id="5_qwm53"]
+[ext_resource type="Texture2D" uid="uid://dpwv5y4rgqwrn" path="res://resources/Down.png" id="6_gt5gj"]
 
 [sub_resource type="Animation" id="Animation_aix46"]
 length = 0.3
@@ -78,7 +78,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6as7e"]
 radius = 6.0
-height = 26.0
+height = 20.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer_", "shootLeftSpawn_", "shootRightSpawn_", "shootUpSpawn_", "shootDownSpawn_", "shootUpLeftSpawn_", "shootUpRightSpawn_", "shootDownLeftSpawn_", "shootDownRightSpawn_", "faceLeftSprite_", "faceRightSprite_", "faceUpSprite_", "faceDownSprite_", "timer_")]
 texture_filter = 1
@@ -248,4 +248,5 @@ position = Vector2(8.00001, 8.57143)
 wait_time = 0.28
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 3)
 shape = SubResource("CapsuleShape2D_6as7e")

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Gooblin" load_steps=2 format=3 uid="uid://bsd1gk7oli6xy"]
+
+[ext_resource type="Script" path="res://src/enemies/Gooblin.cs" id="1_yv8ke"]
+
+[resource]
+script = ExtResource("1_yv8ke")
