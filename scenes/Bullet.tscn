@@ -7,7 +7,7 @@
 
 [node name="Bullet" type="Node2D" node_paths=PackedStringArray("area2D_")]
 script = ExtResource("1_k4py0")
-area2D_ = NodePath("Area2D")
+area2D_ = NodePath("Bullet")
 
 [node name="BulletSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -26,8 +26,9 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b7afa75ecb0d4aaf1befc51f1a06a9bc"
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
+[node name="Bullet" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Bullet" type="CollisionShape2D" parent="Bullet"]
 shape = SubResource("RectangleShape2D_0xst3")

@@ -17,6 +17,11 @@ public partial class Bullet : Node2D
     {
         if (body.GetType() != typeof(Player))
             QueueFree();
+        if (body is Enemy)
+        {
+            // Possibly different logic depending on upgrades or enemies
+            QueueFree();
+        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

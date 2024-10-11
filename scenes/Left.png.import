@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ka5u4cdp2532"
-path="res://.godot/imported/gooblin.png-234b28f75355787a087471271a07bed3.ctex"
+uid="uid://bsxo8185sa4xv"
+path="res://.godot/imported/Left.png-25134e5403847ef632b2fa2f381d7fee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/gooblin.png"
-dest_files=["res://.godot/imported/gooblin.png-234b28f75355787a087471271a07bed3.ctex"]
+source_file="res://scenes/Left.png"
+dest_files=["res://.godot/imported/Left.png-25134e5403847ef632b2fa2f381d7fee.ctex"]
 
 [params]
 

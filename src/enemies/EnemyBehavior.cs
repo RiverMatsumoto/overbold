@@ -6,4 +6,5 @@ public abstract partial class EnemyBehavior : Resource
     public abstract void Execute(double delta, Enemy enemy, Player player);
     public abstract void OnDeath(Enemy enemy);
     public abstract void OnGlobalTick();
+    [Export] public int Health { get; set; }
 }

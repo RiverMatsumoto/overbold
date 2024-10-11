@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 
 public partial class Player : CharacterBody2D
@@ -57,7 +56,7 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         if (animationPlayer_ != null)
-            animationPlayer_.Play("default");
+            animationPlayer_.Play("walk_left");
         if (timer_ != null)
             timer_.Timeout += OnTimerCooldown;
     }
@@ -75,13 +74,13 @@ public partial class Player : CharacterBody2D
         {
             moveDirection_.Y = -1;
             if (!aPressed)
-                FaceUp();
+                animationPlayer_.Play("walk_up");
         }
         else if (Input.IsActionPressed("down"))
         {
             moveDirection_.Y = 1;
             if (!aPressed)
-                FaceDown();
+                animationPlayer_.Play("walk_down");
         }
         else
         {
@@ -91,13 +90,13 @@ public partial class Player : CharacterBody2D
         {
             moveDirection_.X = -1;
             if (!aPressed)
-                FaceLeft();
+                animationPlayer_.Play("walk_left");
         }
         else if (Input.IsActionPressed("right"))
         {
             moveDirection_.X = 1;
             if (!aPressed)
-                FaceRight();
+                animationPlayer_.Play("walk_right");
         }
         else
         {
@@ -112,13 +111,12 @@ public partial class Player : CharacterBody2D
         }
         else
         {
-            animationPlayer_.Play("default");
+            animationPlayer_.Play();
         }
 
         if (aPressed && canShoot_)
         {
             // shoot, set cooldown, lock facing direction
-            GD.Print("shoot");
             Bullet bullet = bullet_.Instantiate<Bullet>();
             bulletList_.AddChild(bullet);
             bullet.GlobalPosition = bulletSpawn_.GlobalPosition;

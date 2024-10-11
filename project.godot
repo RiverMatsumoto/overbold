@@ -66,8 +66,10 @@ b={
 
 [layer_names]
 
-2d_physics/layer_1="Wall"
-2d_physics/layer_2="Enemy"
+2d_physics/layer_1="WallCollision"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="EnemyHurtbox"
+2d_physics/layer_4="Bullet"
 
 [rendering]
 

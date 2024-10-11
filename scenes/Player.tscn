@@ -1,13 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b81bmxi0fvh50"]
+[gd_scene load_steps=13 format=3 uid="uid://b81bmxi0fvh50"]
 
 [ext_resource type="Script" path="res://src/Player.cs" id="2_mkymj"]
 [ext_resource type="PackedScene" uid="uid://du4j10n3xqatc" path="res://scenes/Bullet.tscn" id="3_cg2n5"]
-[ext_resource type="Texture2D" uid="uid://l8pnwgqsywvb" path="res://resources/Left.png" id="3_shve1"]
-[ext_resource type="Texture2D" uid="uid://v5sb8wd754xy" path="res://resources/Right.png" id="4_ng3rt"]
-[ext_resource type="Texture2D" uid="uid://cp8pdylsf6gh4" path="res://resources/Up.png" id="5_qwm53"]
-[ext_resource type="Texture2D" uid="uid://dpwv5y4rgqwrn" path="res://resources/Down.png" id="6_gt5gj"]
+[ext_resource type="Texture2D" uid="uid://bjrqjpt4oaqev" path="res://scenes/AllSprites.png" id="3_x01jl"]
 
 [sub_resource type="Animation" id="Animation_aix46"]
+resource_name = "walk"
 length = 0.3
 loop_mode = 1
 tracks/0/type = "value"
@@ -25,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Player/Right:frame")
+tracks/1/path = NodePath("Player/Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -34,46 +32,115 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Player/Up:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = false
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+
+[sub_resource type="Animation" id="Animation_wv7xi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1]
+"values": [0]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Player/Down:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = false
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+
+[sub_resource type="Animation" id="Animation_3y8lr"]
+resource_name = "walk_left"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 0]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Player/Left:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = false
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+
+[sub_resource type="Animation" id="Animation_6t3k0"]
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_c7dxr"]
+resource_name = "walk_right"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 2]
+}
+
+[sub_resource type="Animation" id="Animation_4walp"]
+resource_name = "walk_up"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_oyr0o"]
+resource_name = "walk_down"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vtusx"]
 _data = {
-"default": SubResource("Animation_aix46")
+"RESET": SubResource("Animation_wv7xi"),
+"default": SubResource("Animation_6t3k0"),
+"walk": SubResource("Animation_aix46"),
+"walk_down": SubResource("Animation_oyr0o"),
+"walk_left": SubResource("Animation_3y8lr"),
+"walk_right": SubResource("Animation_c7dxr"),
+"walk_up": SubResource("Animation_4walp")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6as7e"]
@@ -82,24 +149,24 @@ height = 20.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer_", "shootLeftSpawn_", "shootRightSpawn_", "shootUpSpawn_", "shootDownSpawn_", "shootUpLeftSpawn_", "shootUpRightSpawn_", "shootDownLeftSpawn_", "shootDownRightSpawn_", "faceLeftSprite_", "faceRightSprite_", "faceUpSprite_", "faceDownSprite_", "timer_")]
 texture_filter = 1
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("2_mkymj")
 speed_ = 14000.0
 animationPlayer_ = NodePath("AnimationPlayer")
 bullet_ = ExtResource("3_cg2n5")
-shootLeftSpawn_ = NodePath("Left/ShootLeftSpawn")
-shootRightSpawn_ = NodePath("Left/ShootRightSpawn")
-shootUpSpawn_ = NodePath("Left/ShootUpSpawn")
-shootDownSpawn_ = NodePath("Left/ShootDownSpawn")
-shootUpLeftSpawn_ = NodePath("Left/ShootUpLeftSpawn")
-shootUpRightSpawn_ = NodePath("Left/ShootUpRightSpawn")
-shootDownLeftSpawn_ = NodePath("Left/ShootDownLeftSpawn")
-shootDownRightSpawn_ = NodePath("Left/ShootDownRightSpawn")
-faceLeftSprite_ = NodePath("Left")
-faceRightSprite_ = NodePath("Right")
-faceUpSprite_ = NodePath("Up")
-faceDownSprite_ = NodePath("Down")
-timer_ = NodePath("Left/Timer")
+shootLeftSpawn_ = NodePath("Sprite/ShootLeftSpawn")
+shootRightSpawn_ = NodePath("Sprite/ShootRightSpawn")
+shootUpSpawn_ = NodePath("Sprite/ShootUpSpawn")
+shootDownSpawn_ = NodePath("Sprite/ShootDownSpawn")
+shootUpLeftSpawn_ = NodePath("Sprite/ShootUpLeftSpawn")
+shootUpRightSpawn_ = NodePath("Sprite/ShootUpRightSpawn")
+shootDownLeftSpawn_ = NodePath("Sprite/ShootDownLeftSpawn")
+shootDownRightSpawn_ = NodePath("Sprite/ShootDownRightSpawn")
+faceLeftSprite_ = NodePath("Sprite")
+faceRightSprite_ = NodePath("")
+faceUpSprite_ = NodePath("")
+faceDownSprite_ = NodePath("")
+timer_ = NodePath("Sprite/Timer")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -125,40 +192,16 @@ libraries = {
 "": SubResource("AnimationLibrary_vtusx")
 }
 
-[node name="Down" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-position = Vector2(-1, -1)
-texture = ExtResource("6_gt5gj")
-hframes = 2
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layer": "Down",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "AnimationPlayer",
-"slice": "",
-"source": "res://resources/aseprite/player.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "e0b85118c810cf8ff898c400cbae2133"
-metadata/_aseprite_wizard_interface_config_ = {
-"animation_section": false,
-"layer_section": true
-}
-
-[node name="Up" type="Sprite2D" parent="."]
-visible = false
+[node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-1, 0)
-texture = ExtResource("5_qwm53")
-hframes = 2
+texture = ExtResource("3_x01jl")
+hframes = 3
+vframes = 3
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
-"layer": "Up",
+"layer": "AllSprites",
 "o_ex_p": "",
 "o_folder": "",
 "o_name": "",
@@ -167,84 +210,39 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://resources/aseprite/player.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "e0b85118c810cf8ff898c400cbae2133"
-metadata/_aseprite_wizard_interface_config_ = {
-"animation_section": false,
-"layer_section": true
-}
-
-[node name="Right" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-texture = ExtResource("4_ng3rt")
-hframes = 2
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layer": "Right",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "AnimationPlayer",
-"slice": "",
-"source": "res://resources/aseprite/player.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "e0b85118c810cf8ff898c400cbae2133"
+metadata/_aseprite_wizard_source_file_hash_ = "1cdca5e386e0287a75962b2693dd698c"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "layer_section": true,
-"output_section": false
+"output_section": false,
+"slice_section": false
 }
 
-[node name="Left" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-1, 0)
-texture = ExtResource("3_shve1")
-hframes = 2
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layer": "Left",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "AnimationPlayer",
-"slice": "",
-"source": "res://resources/aseprite/player.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "e0b85118c810cf8ff898c400cbae2133"
-metadata/_aseprite_wizard_interface_config_ = {
-"animation_section": false,
-"layer_section": true
-}
-
-[node name="ShootLeftSpawn" type="Node2D" parent="Left"]
+[node name="ShootLeftSpawn" type="Node2D" parent="Sprite"]
 position = Vector2(-10.8571, -2.57143)
 
-[node name="ShootRightSpawn" type="Node2D" parent="Left"]
+[node name="ShootRightSpawn" type="Node2D" parent="Sprite"]
 position = Vector2(12, -2.85714)
 
-[node name="ShootUpSpawn" type="Node2D" parent="Left"]
+[node name="ShootUpSpawn" type="Node2D" parent="Sprite"]
 position = Vector2(0.285709, -11.1429)
 
-[node name="ShootDownSpawn" type="Node2D" parent="Left"]
+[node name="ShootDownSpawn" type="Node2D" parent="Sprite"]
 position = Vector2(-4.29153e-06, 8.57143)
 
-[node name="ShootUpLeftSpawn" type="Node2D" parent="Left"]
+[node name="ShootUpLeftSpawn" type="Node2D" parent="Sprite"]
 position = Vector2(-7.71428, -11.4286)
 
-[node name="ShootUpRightSpawn" type="Node2D" parent="Left"]
+[node name="ShootUpRightSpawn" type="Node2D" parent="Sprite"]
 position = Vector2(8.00001, -10.8571)
 
-[node name="ShootDownLeftSpawn" type="Node2D" parent="Left"]
+[node name="ShootDownLeftSpawn" type="Node2D" parent="Sprite"]
 position = Vector2(-7.42858, 8.28572)
 
-[node name="ShootDownRightSpawn" type="Node2D" parent="Left"]
+[node name="ShootDownRightSpawn" type="Node2D" parent="Sprite"]
 position = Vector2(8.00001, 8.57143)
 
-[node name="Timer" type="Timer" parent="Left"]
+[node name="Timer" type="Timer" parent="Sprite"]
 wait_time = 0.28
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

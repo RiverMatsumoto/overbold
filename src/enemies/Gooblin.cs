@@ -17,7 +17,6 @@ public partial class Gooblin : EnemyBehavior
             Vector2 enemyPos = enemy.GlobalPosition / windowSize;
             float distanceToPlayer = enemyPos.DistanceTo(playerPos);
             aggroChance = new RandomNumberGenerator().Randf() / 10.0f * (1 + (1 - distanceToPlayer));
-            GD.Print($"Aggro chance: {aggroChance} also gooblin");
             newAggroChance = false;
         }
         
@@ -26,11 +25,11 @@ public partial class Gooblin : EnemyBehavior
     public override void OnDeath(Enemy enemy)
     {
         GD.Print("Gooblin died");
+        enemy.QueueFree();
     }
 
     public override void OnGlobalTick()
     {
         newAggroChance = true;
-        GD.Print("new aggro chance");
     }
 }

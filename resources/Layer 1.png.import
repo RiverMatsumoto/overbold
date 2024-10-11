@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ka5u4cdp2532"
-path="res://.godot/imported/gooblin.png-234b28f75355787a087471271a07bed3.ctex"
+uid="uid://bvwc20l7plomd"
+path="res://.godot/imported/Layer 1.png-6b4d81fc04ccc79ae1642f648cfe7654.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/gooblin.png"
-dest_files=["res://.godot/imported/gooblin.png-234b28f75355787a087471271a07bed3.ctex"]
+source_file="res://resources/Layer 1.png"
+dest_files=["res://.godot/imported/Layer 1.png-6b4d81fc04ccc79ae1642f648cfe7654.ctex"]
 
 [params]
 
