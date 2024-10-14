@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bg8l8ef4abun6"
+path="res://.godot/imported/bullet_upgrade.aseprite-0b8d86874ad4d9516ba0ba1514da0cc7.res"
+
+[deps]
+
+source_file="res://resources/aseprite/bullet_upgrade.aseprite"
+dest_files=["res://.godot/imported/bullet_upgrade.aseprite-0b8d86874ad4d9516ba0ba1514da0cc7.res"]
+
+[params]
+

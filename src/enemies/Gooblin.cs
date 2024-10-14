@@ -14,6 +14,7 @@ public partial class Gooblin : EnemyBehavior
     Tween tween_;
     double timePassed_ = 0.0f;
     readonly Vector2I WINDOW_SIZE = DisplayServer.WindowGetSize();
+    public float speed_ = 100f;
     
 
     public override void Initialize(Enemy enemy, Player player)
@@ -44,14 +45,14 @@ public partial class Gooblin : EnemyBehavior
             // distance to player is 0 to 1, 1 being right on top of player
             float distanceToPlayer = 1 - enemyPos.DistanceTo(playerPos);
             // GD.Print(distanceToPlayer);
-            aggroChance_ = new RandomNumberGenerator().Randf() + distanceToPlayer * 0.5f;
+            aggroChance_ = new RandomNumberGenerator().Randf() - distanceToPlayer * 0.2f;
             newAggroChance_ = false;
             // GD.Print(aggroChance_);
         }
         if (timePassed_ > 1.0f)
         {
             timePassed_ = 0.0f;
-            if (newWanderLocation_ && aggroChance_ < 0.5f)
+            if (newWanderLocation_ && aggroChance_ > 0.5f)
             {
                 // wander 
                 // tween move direction by rotating it by a random amount
@@ -70,27 +71,23 @@ public partial class Gooblin : EnemyBehavior
                 // percent of screen away from center, direction, multiply by window_size to move the sphere center
                 Vector2 direction = (screenCenter - wanderSpherePos).Normalized();
                 Vector2 magnitude = (screenCenter - wanderSpherePos).Abs();
-                GD.Print($"Direction: {direction}");
-                GD.Print($"Magnitude: {magnitude}");
                 wanderLocation_ = wanderLocation_ + (magnitude / screenCenter * direction * radius);
                 enemy_.wanderSpherePos_ = wanderSpherePos + magnitude / screenCenter * direction * radius;
                 enemy_.wanderSphereRadius_ = radius;
                 enemy_.wanderSpherePosition_ = enemy_.ToLocal(wanderLocation_);
                 moveDirection_ = enemy_.GlobalPosition.DirectionTo(wanderLocation_).Normalized();
-                GD.Print($"Wander location: {wanderLocation_}");
             }
             newWanderLocation_ = false;
         }
-        if (aggroChance_ > 0.5f)
-            enemy_.Velocity = enemy_.GlobalPosition.DirectionTo(player_.GlobalPosition) * 100;
+        if (aggroChance_ < 0.5f)
+            enemy_.Velocity = enemy_.GlobalPosition.DirectionTo(player_.GlobalPosition) * speed_;
         else
-            enemy_.Velocity = moveDirection_ * 100;
+            enemy_.Velocity = moveDirection_ * speed_;
         enemy_.MoveAndSlide();
     }
 
     public override void OnDeath(Enemy enemy)
     {
-        GD.Print("Gooblin died");
         enemy.QueueFree();
     }
 
@@ -103,6 +100,5 @@ public partial class Gooblin : EnemyBehavior
     {
         timer_.WaitTime = new RandomNumberGenerator().RandfRange(0.5f, 2.0f);
         newWanderLocation_ = true;
-        GD.Print("new wander location");
     }
 }

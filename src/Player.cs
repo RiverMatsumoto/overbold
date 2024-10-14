@@ -19,6 +19,8 @@ public partial class Player : CharacterBody2D
     [Export] protected Sprite2D faceUpSprite_;
     [Export] protected Sprite2D faceDownSprite_;
     [Export] Timer timer_;
+    bool invincible_ = false;
+
     Node2D bulletSpawn_
     {
         get {

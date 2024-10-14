@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://m7wyqangacpc"]
 
-[ext_resource type="Script" path="res://src/enemies/Enemy.cs" id="1_dn3mq"]
-[ext_resource type="Resource" uid="uid://bsd1gk7oli6xy" path="res://resources/EnemyBehaviors/gooblin.tres" id="2_yq1fx"]
-[ext_resource type="Texture2D" uid="uid://dt3lppes26knt" path="res://scenes/Hurt.png" id="3_saygs"]
-[ext_resource type="Texture2D" uid="uid://d3n0unty2honx" path="res://scenes/Walk.png" id="4_bo6xk"]
+[ext_resource type="Script" path="res://src/enemies/Enemy.cs" id="1_o265l"]
+[ext_resource type="Resource" uid="uid://bsd1gk7oli6xy" path="res://resources/enemy_behaviors/gooblin.tres" id="2_u0tkv"]
+[ext_resource type="Texture2D" uid="uid://d3n0unty2honx" path="res://scenes/Walk.png" id="3_o3nqc"]
+[ext_resource type="Texture2D" uid="uid://dt3lppes26knt" path="res://scenes/Hurt.png" id="4_ic630"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_728e2"]
 size = Vector2(12, 22)
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_bo6xk")]
+"values": [ExtResource("3_o3nqc")]
 }
 
 [sub_resource type="Animation" id="Animation_paq0n"]
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("3_saygs"), ExtResource("4_bo6xk")]
+"values": [ExtResource("4_ic630"), ExtResource("3_o3nqc")]
 }
 
 [sub_resource type="Animation" id="Animation_w88rd"]
@@ -84,12 +84,11 @@ _data = {
 size = Vector2(16, 30)
 
 [node name="Gooblin" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox_", "animationPlayer_")]
-collision_layer = 4
+collision_layer = 0
 motion_mode = 1
-script = ExtResource("1_dn3mq")
-enemyBehavior_ = ExtResource("2_yq1fx")
+script = ExtResource("1_o265l")
+enemyBehavior_ = ExtResource("2_u0tkv")
 hurtbox_ = NodePath("Hurtbox")
-debug_ = true
 animationPlayer_ = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -99,7 +98,7 @@ shape = SubResource("RectangleShape2D_728e2")
 
 [node name="Walk" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("4_bo6xk")
+texture = ExtResource("3_o3nqc")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 0,
 "keep_anim_length": false,

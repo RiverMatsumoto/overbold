@@ -21,6 +21,7 @@ public partial class Enemy : Player
         hurtbox_.AreaEntered += OnHurtboxAreaEntered;
     }
 
+    // TODO extract similar functionality for player and enemy to clean up
     public override void _Ready()
     {
         // animationPlayer_.Play("walk");
@@ -41,10 +42,14 @@ public partial class Enemy : Player
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 knockback = new Vector2())
     {
-        GD.Print(enemyBehavior_.Health);
         enemyBehavior_.Health -= damage;
+        animationPlayer_.Play("hurt");
+        animationPlayer_.Queue("walk");
+        Tween tween = GetTree().CreateTween();
+        tween.TweenProperty(this, "global_position", GlobalPosition + knockback, 0.15f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+        tween.Play();
         if (enemyBehavior_.Health <= 0)
         {
             enemyBehavior_.OnDeath(this);
@@ -53,12 +58,12 @@ public partial class Enemy : Player
     
     public void OnHurtboxAreaEntered(Area2D area)
     {
-        if (area.Name == "Bullet")
-        {
-            animationPlayer_.Play("hurt");
-            animationPlayer_.Queue("walk");
-            TakeDamage(1);
-        }
+        // if (area.Name == "Bullet")
+        // {
+        //     animationPlayer_.Play("hurt");
+        //     animationPlayer_.Queue("walk");
+            // TakeDamage(1);
+        // }
     }
 
     public override void _Draw()

@@ -1,15 +1,15 @@
-[gd_scene load_steps=13 format=4 uid="uid://deknjltr0d2dn"]
+[gd_scene load_steps=16 format=4 uid="uid://deknjltr0d2dn"]
 
-[ext_resource type="TileSet" uid="uid://dle6cxhqhj0ap" path="res://resources/tileset.tres" id="1_5j1xl"]
-[ext_resource type="Script" path="res://src/enemies/EnemyManager.cs" id="1_mprwp"]
-[ext_resource type="Script" path="res://src/TileMapLayer.cs" id="2_5ji8j"]
-[ext_resource type="PackedScene" uid="uid://b81bmxi0fvh50" path="res://scenes/Player.tscn" id="4_a44ms"]
-[ext_resource type="Script" path="res://src/enemies/Enemy.cs" id="4_ldmpv"]
-[ext_resource type="PackedScene" uid="uid://m7wyqangacpc" path="res://scenes/gooblin.tscn" id="5_u1vp1"]
-[ext_resource type="Texture2D" uid="uid://c65umobyik8k6" path="res://resources/gnome.png" id="6_lxcj7"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_728e2"]
-size = Vector2(10, 22.8572)
+[ext_resource type="TileSet" uid="uid://dle6cxhqhj0ap" path="res://resources/tileset.tres" id="1_6gqxj"]
+[ext_resource type="Script" path="res://src/TileMapLayer.cs" id="2_fmyyh"]
+[ext_resource type="Script" path="res://src/enemies/EnemyManager.cs" id="3_07uue"]
+[ext_resource type="PackedScene" uid="uid://m7wyqangacpc" path="res://scenes/Gooblin.tscn" id="4_sw62e"]
+[ext_resource type="Script" path="res://src/RoundManager.cs" id="5_12fww"]
+[ext_resource type="PackedScene" uid="uid://b81bmxi0fvh50" path="res://scenes/Player.tscn" id="6_vcqnv"]
+[ext_resource type="Script" path="res://src/Debug.cs" id="8_wk5nw"]
+[ext_resource type="FontFile" uid="uid://b1156x1qxxfq4" path="res://resources/FontArcade.TTF" id="9_hqvlr"]
+[ext_resource type="Script" path="res://src/UpgradeScreen.cs" id="9_qaykg"]
+[ext_resource type="Texture2D" uid="uid://bx00dgsrvqxoa" path="res://resources/bullet_upgrade.png" id="10_4x2ud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qejq"]
 size = Vector2(81, 885.5)
@@ -23,86 +23,65 @@ size = Vector2(1655.25, 87)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ll4h8"]
 size = Vector2(85, 854)
 
+[sub_resource type="Theme" id="Theme_7uce2"]
+default_font = ExtResource("9_hqvlr")
+default_font_size = 70
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(7, 7)
 tile_map_data = PackedByteArray("AAAAAAAAAQABAAEAAAAAAAEAAQABAAEAAAABAAEAAQAAAAAAAAABAAIAAQAAAAEAAAACAAIAAQABAAEAAAACAAMAAQABAAEAAAADAAMAAQABAAEAAAAEAAMAAQABAAEAAAAEAAQAAQABAAEAAAADAAIAAQABAAEAAAACAAEAAQABAAAAAAABAAAAAQABAAEAAAACAAAAAQABAAEAAAADAAAAAQABAAEAAAAEAAAAAQABAAEAAAAFAAAAAQABAAEAAAAGAAAAAQABAAEAAAAHAAAAAQABAAEAAAAIAAAAAQABAAEAAAAJAAAAAQABAAEAAAAKAAAAAQABAAEAAAALAAAAAQABAAEAAAAMAAAAAQABAAEAAAANAAAAAQABAAEAAAAdABAAAAABAAAAAAAAAAIAAQABAAEAAAAAAAMAAQABAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAEAAAAAAAYAAQABAAEAAAAAAAcAAQABAAEAAAAAAAgAAQABAAEAAAACAAgAAQABAAIAAAACAAcAAQABAAEAAAACAAYAAQABAAEAAAACAAUAAQABAAEAAAACAAQAAQABAAEAAAABAAMAAQAAAAEAAAABAAQAAQAAAAEAAAABAAUAAQAAAAEAAAABAAYAAQAAAAEAAAABAAcAAQAAAAEAAAABAAgAAQAAAAIAAAADAAgAAQABAAIAAAADAAcAAQABAAEAAAADAAYAAQAAAAMAAAADAAUAAQABAAEAAAADAAQAAQABAAEAAAAEAAIAAQABAAEAAAADAAEAAQABAAAAAAAEAAEAAQABAAAAAAAFAAEAAQABAAAAAAAGAAEAAQABAAAAAAAHAAEAAQABAAAAAAAIAAEAAQABAAAAAAAJAAEAAQABAAAAAAANAAEAAQABAAAAAAAMAAEAAQABAAAAAAALAAEAAQABAAAAAAAKAAEAAQABAAAAAAAMAAgAAQABAAIAAAAMAAcAAQABAAEAAAAMAAYAAQABAAEAAAAMAAUAAQABAAEAAAAMAAQAAQABAAEAAAAMAAMAAQABAAEAAAAMAAIAAQABAAEAAAALAAIAAQABAAEAAAAKAAIAAQABAAEAAAAJAAIAAQABAAEAAAAIAAIAAQABAAEAAAAHAAIAAQABAAEAAAAGAAIAAQABAAEAAAAFAAIAAQABAAEAAAAFAAMAAQABAAEAAAAFAAQAAQABAAEAAAAFAAUAAQABAAEAAAAEAAUAAQABAAEAAAAEAAYAAQABAAEAAAAEAAcAAQABAAEAAAAEAAgAAQABAAIAAAAFAAgAAQABAAIAAAAFAAcAAQABAAEAAAAFAAYAAQABAAEAAAAGAAYAAQABAAMAAAAGAAUAAQABAAEAAAAGAAQAAQABAAEAAAAGAAMAAQAAAAMAAAAHAAMAAQABAAEAAAAHAAQAAQABAAEAAAAHAAUAAQABAAEAAAAHAAYAAQABAAEAAAAHAAcAAQABAAEAAAAGAAcAAQABAAEAAAAGAAgAAQABAAIAAAAHAAgAAQABAAIAAAAIAAgAAQABAAIAAAAIAAcAAQABAAEAAAAIAAYAAQABAAEAAAAIAAUAAQABAAEAAAAIAAQAAQABAAEAAAAIAAMAAQABAAEAAAAJAAMAAQABAAEAAAAJAAQAAQABAAEAAAAJAAUAAQABAAEAAAAJAAYAAQABAAEAAAAJAAcAAQABAAEAAAAJAAgAAQABAAIAAAAKAAgAAQABAAIAAAAKAAcAAQABAAEAAAAKAAYAAQABAAEAAAAKAAUAAQABAAEAAAAKAAQAAQABAAEAAAAKAAMAAQABAAMAAAALAAMAAQABAAEAAAALAAQAAQABAAEAAAALAAUAAQABAAEAAAALAAYAAQAAAAMAAAALAAcAAQABAAEAAAALAAgAAQABAAIAAAANAAgAAQABAAIAAAANAAcAAQABAAEAAAANAAYAAQABAAEAAAANAAUAAQABAAEAAAANAAQAAQABAAEAAAANAAMAAQABAAEAAAANAAIAAQABAAEAAAAOAAUAAQABAAMAAAAOAAYAAQABAAEAAAAOAAcAAQABAAEAAAABAAkAAQABAAEAAAACAAkAAQABAAEAAAADAAkAAQABAAEAAAAEAAkAAQABAAEAAAAFAAkAAQABAAEAAAAGAAkAAQABAAEAAAAHAAkAAQABAAEAAAAIAAkAAQABAAEAAAAJAAkAAQABAAEAAAAKAAkAAQABAAEAAAALAAkAAQABAAEAAAAMAAkAAQABAAEAAAANAAkAAQABAAEAAAAOAAkAAQABAAEAAAAPAAkAAQABAAEAAAAQAAkAAQABAAEAAAAQAAgAAQABAAEAAAAPAAgAAQACAAIAAAAPAAcAAQACAAEAAAAPAAYAAQACAAEAAAAQAAYAAQABAAEAAAAQAAUAAQABAAEAAAAQAAQAAQABAAEAAAAQAAMAAQABAAEAAAAQAAIAAQABAAEAAAAQAAEAAQABAAEAAAAPAAEAAQACAAAAAAAPAAAAAQABAAEAAAAOAAAAAQABAAEAAAAQAAAAAQABAAEAAAAOAAEAAQABAAAAAAAOAAIAAQABAAEAAAAPAAMAAQACAAEAAAAPAAQAAQACAAEAAAAPAAUAAQACAAEAAAAOAAQAAQABAAEAAAAOAAMAAQABAAEAAAAPAAIAAQACAAEAAAAQAAcAAQABAAEAAAAOAAgAAQABAAIAAAARAAkAAQABAAEAAAARAAgAAQABAAEAAAARAAcAAQABAAEAAAARAAYAAQABAAEAAAARAAMAAQABAAEAAAARAAIAAQABAAEAAAARAAEAAQABAAEAAAARAAAAAQABAAEAAAARAAQAAQABAAEAAAARAAUAAQABAAEAAAAAAAkAAQABAAEAAAA=")
-tile_set = ExtResource("1_5j1xl")
-script = ExtResource("2_5ji8j")
+tile_set = ExtResource("1_6gqxj")
+script = ExtResource("2_fmyyh")
 
-[node name="Sprites" type="Node2D" parent="."]
-scale = Vector2(3.5, 3.5)
-
-[node name="EnemyManager" type="Node" parent="Sprites" node_paths=PackedStringArray("timer_", "player_", "sprites_", "spawnPoints")]
-script = ExtResource("1_mprwp")
+[node name="EnemyManager" type="Node" parent="." node_paths=PackedStringArray("entities_", "timer_", "player_", "spawnPoints")]
+script = ExtResource("3_07uue")
+entities_ = NodePath("../Entities")
 timer_ = NodePath("Timer")
-globalEnemyPool_ = Array[PackedScene]([ExtResource("5_u1vp1")])
-player_ = NodePath("../Player")
-sprites_ = NodePath("..")
-spawnPoints = [NodePath("../SpawnPoints/TopLeft"), NodePath("../SpawnPoints/TopRight"), NodePath("../SpawnPoints/BotLeft"), NodePath("../SpawnPoints/BotRight")]
+globalEnemyPool_ = Array[PackedScene]([ExtResource("4_sw62e")])
+player_ = NodePath("../Entities/SpawnPoints/Player")
+spawnPoints = [NodePath("../Entities/SpawnPoints/TopLeft"), NodePath("../Entities/SpawnPoints/TopRight"), NodePath("../Entities/SpawnPoints/BotLeft"), NodePath("../Entities/SpawnPoints/BotRight")]
 
-[node name="Timer" type="Timer" parent="Sprites/EnemyManager"]
+[node name="Timer" type="Timer" parent="EnemyManager"]
 autostart = true
 
-[node name="Bullets" type="Node2D" parent="Sprites"]
+[node name="RoundManager" type="Node" parent="." node_paths=PackedStringArray("enemyManager_", "pointsEarnedLabel_", "enemiesLeftLabel_", "enemySpawnTimer_")]
+script = ExtResource("5_12fww")
+enemyManager_ = NodePath("../EnemyManager")
+pointsEarnedLabel_ = NodePath("../UI/RoundScreen/RoundEnd")
+enemiesLeftLabel_ = NodePath("../UI/RoundScreen/EnemiesLeft")
+enemySpawnTimer_ = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="RoundManager"]
+wait_time = 2.0
+
+[node name="Entities" type="Node2D" parent="."]
+scale = Vector2(3.5, 3.5)
+
+[node name="Bullets" type="Node2D" parent="Entities"]
 position = Vector2(3.48772e-05, 1.74386e-05)
 
-[node name="Player" parent="Sprites" node_paths=PackedStringArray("bulletList_") instance=ExtResource("4_a44ms")]
+[node name="SpawnPoints" type="Node2D" parent="Entities"]
+
+[node name="Player" parent="Entities/SpawnPoints" node_paths=PackedStringArray("bulletList_") instance=ExtResource("6_vcqnv")]
 position = Vector2(258, 174.857)
+scale = Vector2(1, 1)
 collision_layer = 2
 collision_mask = 1
 speed_ = 12000.0
-bulletList_ = NodePath("../Bullets")
+bulletList_ = NodePath("../../Bullets")
 
-[node name="Enemy2" type="CharacterBody2D" parent="Sprites"]
-process_mode = 4
-visible = false
-position = Vector2(160.571, 149.429)
-script = ExtResource("4_ldmpv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Enemy2"]
-position = Vector2(-0.428574, 1.14288)
-scale = Vector2(0.999999, 0.999999)
-shape = SubResource("RectangleShape2D_728e2")
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprites/Enemy2"]
-texture_filter = 1
-texture = ExtResource("6_lxcj7")
-metadata/_aseprite_wizard_config_ = {
-"i_mode": 1,
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "",
-"slice": "",
-"source": "res://resources/aseprite/gnome.aseprite"
-}
-metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": false,
-"output_section": false,
-"slice_section": false
-}
-metadata/_aseprite_wizard_source_file_hash_ = "ea80a8450cd4a37c602d56386c814c4d"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites/Enemy2"]
-root_node = NodePath("../../Enemy2")
-
-[node name="SpawnPoints" type="Node2D" parent="Sprites"]
-
-[node name="TopLeft" type="Node2D" parent="Sprites/SpawnPoints"]
+[node name="TopLeft" type="Node2D" parent="Entities/SpawnPoints"]
 position = Vector2(75.7143, 70)
 
-[node name="TopRight" type="Node2D" parent="Sprites/SpawnPoints"]
+[node name="TopRight" type="Node2D" parent="Entities/SpawnPoints"]
 position = Vector2(469.143, 70.5714)
 
-[node name="BotLeft" type="Node2D" parent="Sprites/SpawnPoints"]
+[node name="BotLeft" type="Node2D" parent="Entities/SpawnPoints"]
 position = Vector2(80, 240.857)
 
-[node name="BotRight" type="Node2D" parent="Sprites/SpawnPoints"]
+[node name="BotRight" type="Node2D" parent="Entities/SpawnPoints"]
 position = Vector2(468, 245.714)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -124,3 +103,88 @@ shape = SubResource("RectangleShape2D_y15bs")
 position = Vector2(1744.5, 567)
 scale = Vector2(1.00686, 1)
 shape = SubResource("RectangleShape2D_ll4h8")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="RoundScreen" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemiesLeft" type="RichTextLabel" parent="UI/RoundScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.510938
+anchor_top = 0.00740741
+anchor_right = 0.885938
+anchor_bottom = 0.130556
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7uce2")
+text = "Enemies Left:"
+metadata/_edit_use_anchors_ = true
+
+[node name="RoundEnd" type="RichTextLabel" parent="UI/RoundScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3125
+anchor_top = 0.486111
+anchor_right = 0.704687
+anchor_bottom = 0.596296
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7uce2")
+text = "points earned: 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Debug" type="Control" parent="UI" node_paths=PackedStringArray("enemyManager_", "roundManager_", "killAllEnemiesButton_")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_wk5nw")
+debug_ = true
+enemyManager_ = NodePath("../../EnemyManager")
+roundManager_ = NodePath("../../RoundManager")
+killAllEnemiesButton_ = NodePath("KillAllEnemies")
+
+[node name="KillAllEnemies" type="Button" parent="UI/Debug"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03125
+anchor_top = 0.0416667
+anchor_right = 0.101563
+anchor_bottom = 0.0805556
+text = "Clear Enemies"
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeScreen" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_qaykg")
+
+[node name="Button" type="Button" parent="UI/UpgradeScreen"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 249.0
+offset_right = 437.0
+offset_bottom = 382.0
+
+[node name="TextureButton" type="TextureButton" parent="UI/UpgradeScreen"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 276.0
+offset_right = 412.0
+offset_bottom = 361.0
+texture_normal = ExtResource("10_4x2ud")
