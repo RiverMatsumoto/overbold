@@ -2,28 +2,11 @@
 
 [ext_resource type="Script" path="res://src/enemies/Enemy.cs" id="1_dn3mq"]
 [ext_resource type="Resource" uid="uid://bsd1gk7oli6xy" path="res://resources/EnemyBehaviors/gooblin.tres" id="2_yq1fx"]
-[ext_resource type="Texture2D" path="res://scenes/Walk.png" id="3_bpmp4"]
-[ext_resource type="Texture2D" uid="uid://ka5u4cdp2532" path="res://resources/gooblin.png" id="3_ct2xj"]
-[ext_resource type="Texture2D" path="res://scenes/Hurt.png" id="5_igrcy"]
+[ext_resource type="Texture2D" uid="uid://dt3lppes26knt" path="res://scenes/Hurt.png" id="3_saygs"]
+[ext_resource type="Texture2D" uid="uid://d3n0unty2honx" path="res://scenes/Walk.png" id="4_bo6xk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_728e2"]
 size = Vector2(12, 22)
-
-[sub_resource type="Animation" id="Animation_7tcyp"]
-resource_name = "hurt"
-length = 0.1334
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Walk:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("5_igrcy"), ExtResource("3_ct2xj")]
-}
 
 [sub_resource type="Animation" id="Animation_kvd35"]
 length = 0.001
@@ -37,7 +20,39 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_bpmp4")]
+"values": [ExtResource("4_bo6xk")]
+}
+
+[sub_resource type="Animation" id="Animation_paq0n"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walk:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_7tcyp"]
+resource_name = "hurt"
+length = 0.1334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walk:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_saygs"), ExtResource("4_bo6xk")]
 }
 
 [sub_resource type="Animation" id="Animation_w88rd"]
@@ -60,6 +75,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lgxcc"]
 _data = {
 "RESET": SubResource("Animation_kvd35"),
+"default": SubResource("Animation_paq0n"),
 "hurt": SubResource("Animation_7tcyp"),
 "walk": SubResource("Animation_w88rd")
 }
@@ -73,6 +89,7 @@ motion_mode = 1
 script = ExtResource("1_dn3mq")
 enemyBehavior_ = ExtResource("2_yq1fx")
 hurtbox_ = NodePath("Hurtbox")
+debug_ = true
 animationPlayer_ = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -82,7 +99,7 @@ shape = SubResource("RectangleShape2D_728e2")
 
 [node name="Walk" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("3_bpmp4")
+texture = ExtResource("4_bo6xk")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 0,
 "keep_anim_length": false,
@@ -97,7 +114,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
-"layer_section": false,
+"layer_section": true,
 "output_section": false,
 "slice_section": false
 }

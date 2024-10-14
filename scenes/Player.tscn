@@ -4,6 +4,37 @@
 [ext_resource type="PackedScene" uid="uid://du4j10n3xqatc" path="res://scenes/Bullet.tscn" id="3_cg2n5"]
 [ext_resource type="Texture2D" uid="uid://bjrqjpt4oaqev" path="res://scenes/AllSprites.png" id="3_x01jl"]
 
+[sub_resource type="Animation" id="Animation_wv7xi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6t3k0"]
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="Animation" id="Animation_aix46"]
 resource_name = "walk"
 length = 0.3
@@ -33,8 +64,10 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_wv7xi"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_oyr0o"]
+resource_name = "walk_down"
+length = 0.3
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,10 +75,10 @@ tracks/0/path = NodePath("Player/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [6, 7, 6]
 }
 
 [sub_resource type="Animation" id="Animation_3y8lr"]
@@ -63,22 +96,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_6t3k0"]
-length = 1.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_c7dxr"]
@@ -115,23 +132,6 @@ tracks/0/keys = {
 "values": [4, 5, 4]
 }
 
-[sub_resource type="Animation" id="Animation_oyr0o"]
-resource_name = "walk_down"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [6, 7, 6]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vtusx"]
 _data = {
 "RESET": SubResource("Animation_wv7xi"),
@@ -147,7 +147,7 @@ _data = {
 radius = 6.0
 height = 20.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer_", "shootLeftSpawn_", "shootRightSpawn_", "shootUpSpawn_", "shootDownSpawn_", "shootUpLeftSpawn_", "shootUpRightSpawn_", "shootDownLeftSpawn_", "shootDownRightSpawn_", "faceLeftSprite_", "faceRightSprite_", "faceUpSprite_", "faceDownSprite_", "timer_")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer_", "shootLeftSpawn_", "shootRightSpawn_", "shootUpSpawn_", "shootDownSpawn_", "shootUpLeftSpawn_", "shootUpRightSpawn_", "shootDownLeftSpawn_", "shootDownRightSpawn_", "faceLeftSprite_", "timer_")]
 texture_filter = 1
 collision_mask = 4
 script = ExtResource("2_mkymj")
@@ -163,9 +163,6 @@ shootUpRightSpawn_ = NodePath("Sprite/ShootUpRightSpawn")
 shootDownLeftSpawn_ = NodePath("Sprite/ShootDownLeftSpawn")
 shootDownRightSpawn_ = NodePath("Sprite/ShootDownRightSpawn")
 faceLeftSprite_ = NodePath("Sprite")
-faceRightSprite_ = NodePath("")
-faceUpSprite_ = NodePath("")
-faceDownSprite_ = NodePath("")
 timer_ = NodePath("Sprite/Timer")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,

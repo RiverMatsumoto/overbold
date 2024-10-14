@@ -5,6 +5,7 @@ public partial class Bullet : Node2D
     [Export] Area2D area2D_;
     public Vector2 moveDirection_ { get; set; }
     public float speed_ { get; set; } = 700;
+    public Timer timer_;
 
     public override void _Ready() 
     {
@@ -17,7 +18,7 @@ public partial class Bullet : Node2D
     {
         if (body.GetType() != typeof(Player))
             QueueFree();
-        if (body is Enemy)
+        if (body is Enemy enemy)
         {
             // Possibly different logic depending on upgrades or enemies
             QueueFree();

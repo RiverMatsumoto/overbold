@@ -43,6 +43,7 @@ sprites_ = NodePath("..")
 spawnPoints = [NodePath("../SpawnPoints/TopLeft"), NodePath("../SpawnPoints/TopRight"), NodePath("../SpawnPoints/BotLeft"), NodePath("../SpawnPoints/BotRight")]
 
 [node name="Timer" type="Timer" parent="Sprites/EnemyManager"]
+autostart = true
 
 [node name="Bullets" type="Node2D" parent="Sprites"]
 position = Vector2(3.48772e-05, 1.74386e-05)

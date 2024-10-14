@@ -4,8 +4,12 @@ using System;
 [GlobalClass]
 public partial class Gnome : EnemyBehavior
 {
+    public override void Initialize(Enemy enemy, Player player)
+    {
+        throw new NotImplementedException();
+    }
 
-    public override void Execute(double delta, Enemy enemy, Player player)
+    public override void Execute(double delta)
     {
         
     }

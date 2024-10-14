@@ -1,4 +1,3 @@
-using System;
 using Godot;
 public partial class EnemyManager : Node
 {
@@ -13,8 +12,8 @@ public partial class EnemyManager : Node
         // tempory just spawn in middle of screen, eventually set up game and rounds
         Engine.MaxFps = 60;
         timer_.Start();
-        SpawnEnemy();
-        SpawnEnemy();
+        CallDeferred("SpawnEnemy");
+        CallDeferred("SpawnEnemy");
     }
 
     public void SpawnEnemy()
@@ -28,6 +27,6 @@ public partial class EnemyManager : Node
         Vector2 spawnPos = spawnPoints[rng.RandiRange(0, spawnPoints.Length - 1)].Position;
         GD.Print($"Spawn pos: {spawnPos}");
         enemy.Position = spawnPos;
-        sprites_.CallDeferred("add_child", enemy);
+        sprites_.AddChild(enemy);
     }
 }
